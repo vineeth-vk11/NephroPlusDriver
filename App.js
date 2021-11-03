@@ -1,33 +1,32 @@
 
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-import Splash from './activities/Splash';
-import Otp_input from './activities/Otp_input';
-import Mobile_input from './activities/Mobile_input';
+
+import MobileInput from './activities/MobileInput';
 import Orders from './activities/Orders';
-import OrderDetails from './activities/OrderDetails';
-import OrderComplete from './activities/OrderComplete';
 
-const App=() => {
- 
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+const Stack = createNativeStackNavigator();
+
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "rgb(255,255,255)",
+  },
+};
+
+const App = () => {
   return (
-    <View style={{width:'100%',height:'100%'}}>
-      {/* <Mobile_input/> */}
-      {/* <Otp_input/> */}
-      <Splash/>
-      {/* <Orders/> */}
-      {/* <OrderDetails/> */}
-      {/* <OrderComplete/> */}
-    </View>
+    <NavigationContainer theme={MyTheme}>
+      <Stack.Navigator
+        initialRouteName="MobileInput"
+        screenOptions={{ headerShown: false, gestureEnabled: false }}
+      >
+        <Stack.Screen name="MobileInput" component={MobileInput} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
